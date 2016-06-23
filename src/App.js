@@ -27,12 +27,11 @@ export default class App extends Component {
         });
     }
 
-    /*
     postIntents(payload) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", this.properties.responseUrl, true);
-            xhr.setRequestHeader("authorization", this.properties.apiKey);
+            xhr.open("POST", "https://api.api.ai/v1/intents", true);
+            xhr.setRequestHeader("Authorization", "Bearer 56b6a6ab491c4850aaaecef72d1b6423");
             xhr.setRequestHeader("accept", "application/json");
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.responseType = "json";
@@ -50,12 +49,14 @@ export default class App extends Component {
             };
             xhr.send(JSON.stringify(payload));
         });
-    } */
+    }
 
     render() {
 
-        this._promiseGetRequest().then((response) => {
-            console.log(response);
+        this.getIntents().then((response) => {
+            const sample = response;
+            console.log(sample);
+
         })
 
 
