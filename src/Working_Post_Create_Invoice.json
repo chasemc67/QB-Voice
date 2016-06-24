@@ -1,0 +1,43 @@
+{
+    "name":"Posted Create Invoice",
+    "contexts":[],
+    "templates": [
+        "Send an @Invoice to @sys.given-name for @sys.unit-currency",
+        "Send @sys.given-name a $@sys.unit-currency @Invoice",
+        "Send an @Invoice",
+        "Create an @Invoice",
+        "Create an @Invoice to @sys.given-name for @sys.unit-currency"
+    ],
+    "responses": [
+        {
+            "action": "Invoice",
+            "affectedContexts": [],
+            "parameters":[
+                {
+                    "required":true,
+                    "dataType":"@sys.given-name",
+                    "name":"given-name",
+                    "value":"$given-name",
+                    "prompts":[
+                        "To whom should I send this Invoice?"
+                    ]
+                },
+                {
+                    "required":true,
+                    "dataType":"@sys.unit-currency",
+                    "name":"unit-currency",
+                    "value":"$unit-currency",
+                    "prompts":[
+                        "for how much?"
+                    ]
+                },
+                {
+                    "dataType":"@Invoice",
+                    "name":"invoice",
+                    "value":"$invoice"
+                }
+            ],
+            "speech": "Ok, sending $invoice to $given-name for $unit-currency, would you like to add an Item?"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "turn on/off @appliance",
+  "contexts": [],
+  "templates": [
+    "turn @onOff @appliance",
+    "set @appliance @onOff"
+  ],
+  "responses": [
+    {
+      "action": "setAppliance",
+      "affectedContexts": [
+        "house"
+      ],
+      "parameters": [
+        {
+          "name": "state",
+          "value": "@onOff"
+        },
+        {
+          "name": "appliance",
+          "value": "@appliance"
+        }
+      ]
+    }
+  ]
+}
