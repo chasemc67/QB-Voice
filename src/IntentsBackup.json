@@ -1,119 +1,225 @@
-[{
-    "id":"6fca99e6-4dd6-4017-8230-0030b4732677",
-    "name":"Create Invoice",
-    "state":"LEARNED",
-    "contextIn":[],
-    "parameters":[{
-        "required":true,
-        "dataType":"@sys.given-name",
-        "name":"given-name",
-        "value":"$given-name",
-        "prompts":[
-            "To whom should I send this Invoice?"
-        ]
+[
+    {
+        "id":"6fca99e6-4dd6-4017-8230-0030b4732677",
+        "name":"Create Invoice",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+            {
+                "required":true,
+                "dataType":"@sys.given-name",
+                "name":"given-name",
+                "value":"$given-name",
+                "prompts":[
+                    "To whom should I send this Invoice?"
+                ]
+            },
+            {
+                "required":true,
+                "dataType":"@sys.unit-currency",
+                "name":"unit-currency",
+                "value":"$unit-currency",
+                "prompts":[
+                    "for how much?"
+                ]
+            },
+            {
+                "dataType":"@Invoice",
+                "name":"invoice",
+                "value":"$invoice"
+            }
+        ],
+        "contextOut":[
+            {
+                "name":"Creating_Invoice",
+                "lifespan":5
+            }
+        ],
+        "actions":[
+            "Invoice"
+        ],
+        "priority":500000
     },
     {
-        "required":true,
-        "dataType":"@sys.unit-currency",
-        "name":"unit-currency",
-        "value":"$unit-currency",
-        "prompts":["for how much?"]
+        "id":"439c2212-b79c-45ca-8399-d73894820978",
+        "name":"Send Sales Receipt",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+            {
+                "required":true,
+                "dataType":"@sys.given-name",
+                "name":"given-name",
+                "value":"$given-name",
+                "prompts":[
+                    "To whom?"
+                ]
+            },
+            {
+                "required":true,
+                "dataType":"@sys.unit-currency",
+                "name":"unit-currency",
+                "value":"$unit-currency",
+                "prompts":[
+                    "for how much?"
+                ]
+            }
+        ],
+        "contextOut":[
+
+        ],
+        "actions":[
+            "SalesReceipt"
+        ],
+        "priority":500000
     },
     {
-        "dataType":"@Invoice",
-        "name":"invoice",
-        "value":"$invoice"
-    }],
-    "contextOut":[{
-        "name":"Creating_Invoice",
-        "lifespan":5
-    }],
-    "actions":["Invoice"],
-    "priority":500000
-},
+        "id":"a9111864-82df-4830-b827-44712532d4b6",
+        "name":"Add Item (to Invoice)",
+        "state":"LEARNED",
+        "contextIn":[
+            "Creating_Invoice"
+        ],
+        "parameters":[
+            {
+                "required":true,
+                "dataType":"@Product",
+                "name":"Product",
+                "value":"$Product",
+                "prompts":[
+                    "What did you sell them?"
+                ]
+            },
+            {
+                "required":true,
+                "dataType":"@sys.number",
+                "name":"quanitity",
+                "value":"$quanitity",
+                "prompts":[
+                    "How many?"
+                ]
+            },
+            {
+                "required":true,
+                "dataType":"@sys.unit-currency",
+                "name":"unit-currency",
+                "value":"$unit-currency",
+                "prompts":[
+                    "How much for all of them?"
+                ]
+            },
+            {
+                "dataType":"@Product",
+                "name":"product",
+                "value":"$product"
+            }
+        ],
+        "contextOut":[
+            {
+                "name":"Add_Item",
+                "lifespan":5
+            }
+        ],
+        "actions":[
+            "Item"
+        ],
+        "priority":500000
+    },
+    {
+        "id":"027c14ef-1163-4f50-a7bd-30a0e4e1d1c2",
+        "name":"Add Data (to invoice)",
+        "state":"LEARNED",
+        "contextIn":[
+            "Create_Invoice"
+        ],
+        "parameters":[
 
+        ],
+        "contextOut":[
+            {
+                "name":"Creating_Invoice",
+                "lifespan":5
+            }
+        ],
+        "actions":[
 
-{"id":"439c2212-b79c-45ca-8399-d73894820978",
-"name":"Send Sales Receipt",
-"state":"LEARNED",
-"contextIn":[],
-"parameters":[{"required":true,
-    "dataType":"@sys.given-name",
-"name":"given-name",
-"value":"$given-name",
-"prompts":["To whom?"]},
-    {"required":true,
-"dataType":"@sys.unit-currency",
-"name":"unit-currency",
-"value":"$unit-currency",
-"prompts":["for how much?"]}],
-"contextOut":[],
-"actions":["SalesReceipt"],
-"priority":500000},
-{"id":"a9111864-82df-4830-b827-44712532d4b6",
-"name":"Add Item (to Invoice)",
-"state":"LEARNED",
-"contextIn":["Creating_Invoice"],
-"parameters":[{"required":true,
-    "dataType":"@Product",
-"name":"Product",
-"value":"$Product",
-"prompts":["What did you sell them?"]},
-    {"required":true,
-"dataType":"@sys.number",
-"name":"quanitity",
-"value":"$quanitity",
-"prompts":["How many?"]},
-    {"required":true,
-"dataType":"@sys.unit-currency",
-"name":"unit-currency",
-"value":"$unit-currency",
-"prompts":["How much for all of them?"]},
-    {"dataType":"@Product",
-"name":"product",
-"value":"$product"}],
-"contextOut":[{"name":"Add_Item",
-    "lifespan":5}],
-"actions":["Item"],
-"priority":500000},
-{"id":"027c14ef-1163-4f50-a7bd-30a0e4e1d1c2",
-"name":"Add Data (to invoice)",
-"state":"LEARNED",
-"contextIn":["Create_Invoice"],
-"parameters":[],
-"contextOut":[{"name":"Creating_Invoice",
-    "lifespan":5}],
-"actions":[],
-"priority":500000},
-{"id":"ab9b1792-f160-4a2e-ae81-be9eeaac0e4f",
-"name":"Finish Invoice",
-"state":"LEARNED",
-"contextIn":[],
-"parameters":[],
-"contextOut":[],
-"actions":[],
-"priority":500000},
-{"id":"33213179-e42a-4a50-a301-86571798dddb",
-"name":"Finish item",
-"state":"LEARNED",
-"contextIn":[],
-"parameters":[],
-"contextOut":[],
-"actions":[],
-"priority":500000},
-{"id":"bfe2c12c-3191-4a9b-925a-9473b8b7b879",
-"name":"Make Changes to Invoice (in review)",
-"state":"LEARNED",
-"contextIn":[],
-"parameters":[],
-"contextOut":[],
-"actions":[],
-"priority":500000},
-{"id":"917c26de-c78b-46ac-bffa-270bd1a2f486",
-"name":"Send Invoice",
-"state":"LEARNED",
-"contextIn":[],
-"parameters":[],
-"contextOut":[],
-"actions":[],
-"priority":500000}]"
+        ],
+        "priority":500000
+    },
+    {
+        "id":"ab9b1792-f160-4a2e-ae81-be9eeaac0e4f",
+        "name":"Finish Invoice",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+
+        ],
+        "contextOut":[
+
+        ],
+        "actions":[
+
+        ],
+        "priority":500000
+    },
+    {
+        "id":"33213179-e42a-4a50-a301-86571798dddb",
+        "name":"Finish item",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+
+        ],
+        "contextOut":[
+
+        ],
+        "actions":[
+
+        ],
+        "priority":500000
+    },
+    {
+        "id":"bfe2c12c-3191-4a9b-925a-9473b8b7b879",
+        "name":"Make Changes to Invoice (in review)",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+
+        ],
+        "contextOut":[
+
+        ],
+        "actions":[
+
+        ],
+        "priority":500000
+    },
+    {
+        "id":"917c26de-c78b-46ac-bffa-270bd1a2f486",
+        "name":"Send Invoice",
+        "state":"LEARNED",
+        "contextIn":[
+
+        ],
+        "parameters":[
+
+        ],
+        "contextOut":[
+
+        ],
+        "actions":[
+
+        ],
+        "priority":500000
+    }
+]"
