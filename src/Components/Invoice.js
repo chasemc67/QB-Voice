@@ -24,6 +24,7 @@ export default class Invoice extends Component {
     }
 
     handleQueryAgent(e) {
+        this.setState({queryString: ""});
         let query = {
             "query": [
                 this.state.queryString
@@ -32,9 +33,15 @@ export default class Invoice extends Component {
         };
 
         this.queryAgent(query).then((response) => {
-            console.log(response);
-            this.setState({agentResponse: response.result.speech});
+            this.parseAgentResponse(response);
         });
+    }
+
+    parseAgentResponse(response) {
+        console.log(response);
+        this.setState({agentResponse: response.result.speech});
+        this.setState({clientName: response.result.parameters["given-name"]});
+        this.setState({amount: response.result.parameters["unit-currency"].amount});
     }
 
     queryAgent(payload) {
@@ -65,12 +72,11 @@ export default class Invoice extends Component {
         return(
             <div className="invoice">
                 <h1> Invoice </h1>
-                <textarea className="clientName" rows={1} onInput={this.onNameInput} placeholder="Name" />
-                <textarea className="clientAmount" rows={1} onInput={this.onAmountInput} placeholder="Amount" />
+                <h2>To: {this.state.clientName} </h2>
+                <h2>For: {this.state.amount} </h2>
                 <textarea className="queryAgent" rows={1} onInput={this.onQueryAgent} placeholder="Say something to QB" />
                 <button type="button" className="queryAgentButton" onClick={this.handleQueryAgent}>Query Agent</button>
-
-                <textarea className="agentOutput" rows={1} placeholder={this.state.agentResponse} />
+                <h2>QB Says: {this.state.agentResponse} </h2>
             </div>
         );
     }
