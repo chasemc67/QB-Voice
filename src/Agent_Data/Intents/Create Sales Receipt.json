@@ -1,0 +1,43 @@
+{
+    "name":"Create Sales Receipt",
+    "contexts":[],
+    "templates": [
+        "Send an @SalesReceipt to @sys.given-name for @sys.unit-currency",
+        "Send @sys.given-name a $@sys.unit-currency @SalesReceipt",
+        "Send an @SalesReceipt",
+        "Create an @SalesReceipt",
+        "Create an @SalesReceipt to @sys.given-name for @sys.unit-currency"
+    ],
+    "responses": [
+        {
+            "action": "SalesReceipt",
+            "affectedContexts": [],
+            "parameters":[
+                {
+                    "required":true,
+                    "dataType":"@sys.given-name",
+                    "name":"given-name",
+                    "value":"$given-name",
+                    "prompts":[
+                        "To whom should I send this Sales Receipt?"
+                    ]
+                },
+                {
+                    "required":true,
+                    "dataType":"@sys.unit-currency",
+                    "name":"unit-currency",
+                    "value":"$unit-currency",
+                    "prompts":[
+                        "for how much?"
+                    ]
+                },
+                {
+                    "dataType":"@SalesReceipt",
+                    "name":"SalesReceipt",
+                    "value":"$salesReceipt"
+                }
+            ],
+            "speech": "Ok, sending $salesReceipt to $given-name for $unit-currency, would you like to add an Item?"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 {
-    "name":"Posted Create Invoice",
+    "name":"Create Invoice",
     "contexts":[],
     "templates": [
         "Send an @Invoice to @sys.given-name for @sys.unit-currency",

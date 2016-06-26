@@ -1,0 +1,7 @@
+{
+    "name": "SalesReceipt",
+    "entries": [{
+        "value": "Sales Receipt",
+        "synonyms": ["sales receipt", "bill"]
+    }]
+}

@@ -1,0 +1,7 @@
+{
+    "name": "Invoice",
+    "entries": [{
+        "value": "Invoice",
+        "synonyms": ["invoice", "pay me paper",  "unpaid bill"]
+    }]
+}
