@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Invoice from "./Components/Invoice";
 
 export default class App extends Component {
 
@@ -61,7 +62,7 @@ export default class App extends Component {
 
 
         return (
-            <h1>QBVoice</h1>
+            <Invoice />
         );
     }
 }
