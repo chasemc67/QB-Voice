@@ -13,3 +13,10 @@ Should be able to do this from a fresh agent without visiting the site
 
 
 get Mic stuff working
+
+
+Find out if we can inject parameters. why? because:
+From the homepage screen the user can start an invoice with anywhere from 0 to all required params.
+This user will be dropped into a new context/intent/whatever for sending the invoice, and it needs to know what params it already has.
+And then from there, the user might leave again to go add an item and then come back, and the sendInvoice intent still needs to know what params it already has.
+Perhaps this can be achieved with multiple session ID's (for the add item query). And maybe the homepage thing can doesn't need to switch contexts...
