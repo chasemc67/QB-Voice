@@ -10,11 +10,13 @@ TO DO:
 
 [ ] Get add item working.
 
-[ ] Create JSON post requests to set up agent intents and entities to handle the above ^
+[ ] Add some css
+
+[ ] Create Loader to post requests to set up agent intents and entities to handle the above ^
     Should be able to do this from a fresh agent without visiting the site
 
 
-[ ] get Mic stuff working
+[ ] get Mic stuff working (should probably just integrate in the javascript sdk for this)
 
 
 Find out if we can inject parameters. why? because:
@@ -23,8 +25,4 @@ This user will be dropped into a new context/intent/whatever for sending the inv
 And then from there, the user might leave again to go add an item and then come back, and the sendInvoice intent still needs to know what params it already has.
 Perhaps this can be achieved with multiple session ID's (for the add item query). And maybe the homepage thing can doesn't need to switch contexts...
 
-
-The architecture of the application should proably be such:
-
-Components like invoice and salesReceipt should be loaded in by the homepage. The homepage should be in charge of making and parsing the queries. The resulting data should be given to the components as props (even a list of items).
-The homepage will also hold the context, which will likely be limited to "invoice" or "salesReceipt addItem"
+^ after reading up on contexts, it looks like contexts can have parameters attached to them. This, combined with short small intents, should be enough for us.
