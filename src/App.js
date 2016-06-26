@@ -54,15 +54,11 @@ export default class App extends Component {
 
     render() {
 
-        this.getIntents().then((response) => {
-            const sample = response;
-            console.log(sample);
-
-        })
-
-
         return (
-            <Invoice />
+            <div className="qbVoice">
+                <h1> Hi, I'm QB! what would you like to do? </h1>
+                <Invoice />
+            </div>
         );
     }
 }
