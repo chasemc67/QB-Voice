@@ -30,7 +30,6 @@ export default class Agent {
             xhr.open("GET", url, true);
             xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
             xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("Content-type", "application/json");
             xhr.responseType = "json";
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -48,50 +47,23 @@ export default class Agent {
         });
     }
 
+    postIntents(payload) {
+        const url = "https://api.api.ai/v1/intents"
 
+        return new Promise((resolve, reject) => {
+            this.postJSON(url, payload).then((response) => {
+                resolve(response);
+            });
+        });
+    }
 
     getIntents() {
-            return new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.open("GET", "https://api.api.ai/v1/intents", true);
-                xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
-                xhr.setRequestHeader("accept", "application/json");
-                xhr.responseType = "json";
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
-                    } else {
-                        reject(`GET request failed with status = ${xhr.status} - ${xhr.statusText}`);
-                    }
-                };
-                xhr.onerror = function() {
-                    reject(`GET request failed with status = ${xhr.status} - ${xhr.statusText}`);
-                };
-                xhr.send();
-            });
-        }
+        const url = "https://api.api.ai/v1/intents"
 
-    postIntents(payload) {
         return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://api.api.ai/v1/intents", true);
-            xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
-            xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.responseType = "json";
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
-                } else if (xhr.status === 400) {
-                    reject(xhr.response.message);
-                } else {
-                    reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
-                }
-            };
-            xhr.onerror = function() {
-                reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
-            };
-            xhr.send(JSON.stringify(payload));
+            this.getJSON(url, payload).then((response) => {
+                resolve(response);
+            });
         });
     }
 

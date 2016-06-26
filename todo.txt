@@ -1,18 +1,20 @@
 TO DO:
 
-Create entry screen (where invoice isn't selected yet).
-from here user can say "create invoice" or "create sales receipt".
+[+] Create entry screen (where invoice isn't selected yet).
+    from here user can say "create invoice" or "create sales receipt".
 
-Appropriate react component will be loaded (invoice or sales receipt),
-and any additional data the user included (to whom? for how much?) should also be captured.
+[+] Appropriate react component will be loaded (invoice or sales receipt),
+    and any additional data the user included (to whom? for how much?) should also be captured.
 
-Get add item working.
+[+] Create .json files for entities and intents
 
-Create JSON post requests to set up agent intents and entities to handle the above ^
-Should be able to do this from a fresh agent without visiting the site
+[ ] Get add item working.
+
+[ ] Create JSON post requests to set up agent intents and entities to handle the above ^
+    Should be able to do this from a fresh agent without visiting the site
 
 
-get Mic stuff working
+[ ] get Mic stuff working
 
 
 Find out if we can inject parameters. why? because:
