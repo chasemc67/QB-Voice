@@ -1,0 +1,9 @@
+.document {
+    border-style: solid;
+    border-color: black;
+}
+
+.qbResponse {
+    border-style: solid;
+    border-color: red;
+}

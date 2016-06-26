@@ -7,7 +7,7 @@ export default class DocumentViewManager extends Component {
         super(props);
     }
 
-    render() {
+    documentToRender(){
         if (this.props.documentType === "Invoice") {
             return(
                 <Invoice parameters={this.props.parameters}/>
@@ -21,6 +21,14 @@ export default class DocumentViewManager extends Component {
                 <div> </div>
             );
         }
+    }
+
+    render() {
+        return(
+            <div className="document">
+                {this.documentToRender()}
+            </div>
+        );
     }
 }
 

@@ -48,7 +48,9 @@ export default class App extends Component {
                 <h1> Hi, I'm QB! what would you like to do? </h1>
                 <textarea className="queryAgent" rows={1} onInput={this.onQueryAgentString} placeholder="Say something to QB" />
                 <button type="button" className="queryAgentButton" onClick={this.handleQueryAgent}>Query Agent</button>
-                <h2>QB Says: {this.state.agentResponse} </h2>
+                <div className="qbResponse">
+                    <h2>QB Says: {this.state.agentResponse} </h2>
+                </div>
                 <DocumentViewManager documentType={this.state.documentType} parameters={this.state.documentParameters} />
             </div>
         );

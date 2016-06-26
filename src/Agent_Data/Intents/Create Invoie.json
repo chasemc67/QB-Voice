@@ -37,7 +37,7 @@
                     "value":"$invoice"
                 }
             ],
-            "speech": "Ok, sending $invoice to $given-name for $unit-currency, would you like to add an Item?"
+            "speech": "Ok, sending an invoice to $given-name for $unit-currency.amount dollars."
         }
     ]
 }
