@@ -1,0 +1,38 @@
+// Add a Service item (to an invoice or sales receipt)
+
+{
+    "name":"Add Service",
+    "contexts":[],
+    "templates": [
+        "add @sys.number-integer:quantity @Service:service",
+        "add @Service:service times @sys.number-integer:quantity",
+        "add @sys.number-integer:quantity times @Service:service"
+    ],
+    "responses": [
+        {
+            "action": "AddItem",
+            "affectedContexts": [],
+            "parameters":[
+                {
+                    "required":true,
+                    "dataType":"@sys.number-integer",
+                    "name":"quantity",
+                    "value":"$quantity",
+                    "prompts":[
+                        "How Many?"
+                    ]
+                },
+                {
+                    "required":true,
+                    "dataType":"@Service",
+                    "name":"service",
+                    "value":"$service",
+                    "prompts":[
+                        "What service did you provide?"
+                    ]
+                }
+            ],
+            "speech": "alright, $quantity $service (s)"
+        }
+    ]
+}

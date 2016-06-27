@@ -12,6 +12,7 @@ export default class SalesReceipt extends Component {
                 <h1> Sales Receipt </h1>
                 <h2>To: {this.props.parameters["given-name"] || ""} </h2>
                 <h2>For: {this.props.parameters["unit-currency"].amount || ""} </h2>
+                <h2>Item: {this.props.parameters["service"] || ""} quantity: {this.props.parameters["quantity"] || ""} </h2>
             </div>
         );
     }

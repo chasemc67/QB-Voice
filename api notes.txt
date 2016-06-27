@@ -1,0 +1,18 @@
+So in the intent creation, when you want to put a entity like service in one of your teplates you can so like
+
+@Service:help
+or @Service
+or repair (where repair is a valid service)
+
+what is the difference?
+The difference is the way you can reference them, later in requireds and actions. They pretty much just put a tag on that "version" of service.
+
+in the above case, "help" can be ANY word
+
+It appears as though @Service is "equivalent to" @Service:someUniquEval
+
+
+if both:
+@Service and @Service:help are required, giving an @Service will satisfy an @Service:help too, but not vice versa!
+Giving  an @Service:help will NOT satisfy an @Service
+

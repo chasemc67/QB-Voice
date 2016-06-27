@@ -1,0 +1,13 @@
+{
+    "name": "Service",
+    "entries": [{
+        "value": "lesson",
+        "synonyms": ["lesson", "help"]
+    }, {
+        "value": "repair",
+        "synonyms": ["repair", "fix"]
+    }, {
+        "value": "setup",
+        "synonyms": ["setup"]
+    }]
+}

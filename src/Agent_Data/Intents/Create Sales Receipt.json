@@ -1,3 +1,6 @@
+// Intent to create an sales receipt
+// Must also supply name and $ amount
+
 {
     "name":"Create Sales Receipt",
     "contexts":[],

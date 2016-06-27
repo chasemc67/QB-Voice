@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Invoice from "./Invoice";
 import SalesReceipt from "./SalesReceipt";
+import Item from "./Item";
 
 export default class DocumentViewManager extends Component {
     constructor(props) {
@@ -15,6 +16,10 @@ export default class DocumentViewManager extends Component {
         } else if (this.props.documentType === "SalesReceipt") {
             return(
                 <SalesReceipt parameters={this.props.parameters} />
+            );
+        } else if (this.props.documentType === "AddItem" ){
+            return (
+                <Item parameters={this.props.parameters} />
             );
         } else {
             return(

@@ -1,3 +1,6 @@
+// Intent to create an invoice
+// Must also supply name and $ amount
+
 {
     "name":"Create Invoice",
     "contexts":[],
