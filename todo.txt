@@ -9,7 +9,9 @@ TO DO:
 [+] Create .json files for entities and intents
 
 [ ] Get add item working.
-    [ ] Setup contexts, and state saving so items can be added to sales receipts and invoices (because right now their a state equivalent to sales receipts and invoices)
+    [ ] Setup contexts, and state saving so items can be added to sales receipts and invoices (because right now their a state equivalent to sales receipts and invoices).
+
+    If the contexts can hold variables, then I won't even need to add any javascript to store the variables for the last state (the invoice name and value)
 
 [+] Add some css
 
