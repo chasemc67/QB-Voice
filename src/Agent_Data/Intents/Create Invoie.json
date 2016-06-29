@@ -5,22 +5,22 @@
     "name":"Create Invoice",
     "contexts":[],
     "templates": [
-        "Send an @Invoice to @sys.given-name for @sys.unit-currency",
-        "Send @sys.given-name a $@sys.unit-currency @Invoice",
-        "Send an @Invoice",
-        "Create an @Invoice",
-        "Create an @Invoice to @sys.given-name for @sys.unit-currency"
+        "Send an @Invoice:invoice to @sys.given-name:name for @sys.unit-currency:currency",
+        "Send @sys.given-name:name a @sys.unit-currency:currency @Invoice:invoice",
+        "Send an @Invoice:invoice",
+        "Create an @Invoice:invoice",
+        "Create an @Invoice:invoice to @sys.given-name:name for @sys.unit-currency:currency"
     ],
     "responses": [
         {
             "action": "Invoice",
-            "affectedContexts": [],
+            "affectedContexts": ["creatingDocument"],
             "parameters":[
                 {
                     "required":true,
                     "dataType":"@sys.given-name",
-                    "name":"given-name",
-                    "value":"$given-name",
+                    "name":"name",
+                    "value":"$name",
                     "prompts":[
                         "To whom should I send this Invoice?"
                     ]
@@ -28,8 +28,8 @@
                 {
                     "required":true,
                     "dataType":"@sys.unit-currency",
-                    "name":"unit-currency",
-                    "value":"$unit-currency",
+                    "name":"currency",
+                    "value":"$currency",
                     "prompts":[
                         "for how much?"
                     ]
@@ -40,7 +40,7 @@
                     "value":"$invoice"
                 }
             ],
-            "speech": "Ok, sending an invoice to $given-name for $unit-currency.amount dollars."
+            "speech": "Ok, sending an invoice to $name for $currency.amount dollars."
         }
     ]
 }

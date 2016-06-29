@@ -5,22 +5,22 @@
     "name":"Create Sales Receipt",
     "contexts":[],
     "templates": [
-        "Send an @SalesReceipt to @sys.given-name for @sys.unit-currency",
-        "Send @sys.given-name a $@sys.unit-currency @SalesReceipt",
-        "Send an @SalesReceipt",
-        "Create an @SalesReceipt",
-        "Create an @SalesReceipt to @sys.given-name for @sys.unit-currency"
+        "Send an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency",
+        "Send @sys.given-name:name a $@sys.unit-currency:currency @SalesReceipt:receipt",
+        "Send an @SalesReceipt:receipt",
+        "Create an @SalesReceipt:receipt",
+        "Create an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency"
     ],
     "responses": [
         {
             "action": "SalesReceipt",
-            "affectedContexts": [],
+            "affectedContexts": ["creatingDocument"],
             "parameters":[
                 {
                     "required":true,
                     "dataType":"@sys.given-name",
-                    "name":"given-name",
-                    "value":"$given-name",
+                    "name":"name",
+                    "value":"$name",
                     "prompts":[
                         "To whom should I send this Sales Receipt?"
                     ]
@@ -28,19 +28,19 @@
                 {
                     "required":true,
                     "dataType":"@sys.unit-currency",
-                    "name":"unit-currency",
-                    "value":"$unit-currency",
+                    "name":"currency",
+                    "value":"$currency",
                     "prompts":[
                         "for how much?"
                     ]
                 },
                 {
                     "dataType":"@SalesReceipt",
-                    "name":"SalesReceipt",
-                    "value":"$salesReceipt"
+                    "name":"receipt",
+                    "value":"$receipt"
                 }
             ],
-            "speech": "Ok, sending sales receipt to $given-name for $unit-currency.amount dollars.
+            "speech": "Ok, sending sales receipt to $name for $currency.amount dollars."
         }
     ]
 }
