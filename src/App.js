@@ -41,7 +41,7 @@ export default class App extends Component {
         var config = {
             server: 'wss://api.api.ai:4435/api/ws/query',
             token: "88f0b9f6ed16438c81450397aa3b2385",// Use Client access token there (see agent keys).
-            sessionId: "0000000000000",
+            sessionId: "00000000-0000-0000-0000-000000000000",
             onInit: function () {
                 console.log("> ON INIT use config");
                 apiAi.open();
