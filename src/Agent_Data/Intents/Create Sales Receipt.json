@@ -6,7 +6,7 @@
     "contexts":[],
     "templates": [
         "Send an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency",
-        "Send @sys.given-name:name a $@sys.unit-currency:currency @SalesReceipt:receipt",
+        "Send @sys.given-name:name a @sys.unit-currency:currency @SalesReceipt:receipt",
         "Send an @SalesReceipt:receipt",
         "Create an @SalesReceipt:receipt",
         "Create an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency"
