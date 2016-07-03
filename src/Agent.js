@@ -43,7 +43,30 @@ export default class Agent {
             xhr.onerror = function() {
                 reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
             };
-            xhr.send(JSON.stringify(payload));
+            xhr.send();
+        });
+    }
+
+    deleteJSON(url) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("DELETE", url, true);
+            xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
+                } else if (xhr.status === 400) {
+                    reject(xhr.response.message);
+                } else {
+                    reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                }
+            };
+            xhr.onerror = function() {
+                reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+            };
+            xhr.send();
         });
     }
 
@@ -61,7 +84,27 @@ export default class Agent {
         const url = "https://api.api.ai/v1/intents"
 
         return new Promise((resolve, reject) => {
-            this.getJSON(url, payload).then((response) => {
+            this.getJSON(url).then((response) => {
+                resolve(response);
+            });
+        });
+    }
+
+    getContext() {
+        const url = "https://api.api.ai/v1/contexts?sessionId=123456789"
+
+        return new Promise((resolve, reject) => {
+            this.getJSON(url).then((response) => {
+                resolve(response);
+            });
+        });
+    }
+
+    deleteContext() {
+        const url = "https://api.api.ai/v1/contexts?sessionId=123456789"
+
+        return new Promise((resolve, reject) => {
+            this.deleteJSON(url).then((response) => {
                 resolve(response);
             });
         });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Invoice from "./Components/Invoice";
-import Agent from "./Utils/Agent";
+import Agent from "./Agent";
 import DocumentViewManager from "./Components/DocumentViewManager";
 
 let apiAi;
@@ -14,6 +14,8 @@ export default class App extends Component {
         this.handleQueryAgent = this.handleQueryAgent.bind(this);
         this.handleStartListening = this.handleStartListening.bind(this);
         this.handleStopListening = this.handleStopListening.bind(this);
+        this.getCurrentContext = this.getCurrentContext.bind(this);
+        this.deleteCurrentContext = this.deleteCurrentContext.bind(this);
 
         this.Agent = new Agent();
     }
@@ -27,21 +29,21 @@ export default class App extends Component {
             "query": [
                 this.state.queryString
             ],
-            "lang": "en"
+
+            "lang": "en",
+            "sessionId": "123456789"
         };
 
         this.Agent.queryAgent(query).then((response) => {
             this.parseAgentResponse(response);
         });
-
-        this.setState({queryString: ""});
     }
 
     handleStartListening(e) {
         var config = {
             server: 'wss://api.api.ai:4435/api/ws/query',
             token: "88f0b9f6ed16438c81450397aa3b2385",// Use Client access token there (see agent keys).
-            sessionId: "00000000-0000-0000-0000-000000000000",
+            sessionId: "123456789",
             onInit: function () {
                 console.log("> ON INIT use config");
                 apiAi.open();
@@ -79,10 +81,33 @@ export default class App extends Component {
 
 
     parseAgentResponse(response) {
-        this.setState({
-            agentResponse: response.result.speech,
-            documentType: response.result.action,
-            documentParameters: response.result.parameters
+        this.getCurrentContext().then((context) => {
+            if (context[0] && context[0].name === "creatingdocument"){
+                this.setState({
+                    agentResponse: response.result.speech,
+                    documentType: context[0].parameters.invoice,
+                    documentParameters:
+                })
+            } else {
+                this.setState({
+                    agentResponse: response.result.speech,
+                    documentType: response.result.action,
+                    documentParameters: response.result.parameters
+                });
+            }
+        });
+    }
+
+    getCurrentContext() {
+        this.Agent.getContext().then((response) => {
+            console.log("Conext is: ");
+            console.log(response);
+        });
+    }
+
+    deleteCurrentContext() {
+        this.Agent.deleteContext().then((response) => {
+            console.log("deleted context");
         });
     }
 
@@ -95,6 +120,8 @@ export default class App extends Component {
                 <button type="button" className="queryAgentButton" onClick={this.handleQueryAgent}>Query Agent</button>
                 <button type="button" className="queryAgentButton" onClick={this.handleStartListening}>Start Listening</button>
                 <button type="button" className="queryAgentButton" onClick={this.handleStopListening}>Stop Listening</button>
+                <button type="button" className="queryAgentButton" onClick={this.getCurrentContext}>get Context</button>
+                <button type="button" className="queryAgentButton" onClick={this.deleteCurrentContext}>Delete Context</button>
                 <div className="qbResponse">
                     <h2>QB Says: {this.state.agentResponse} </h2>
                 </div>
