@@ -1,23 +1,12 @@
 TO DO:
 
-[ ] Switch everything over to sdk rather than using agent.js
-[ ] Handle session-ID better
-[ ] use getContext to set react stuff instead of response var. (essentially get invoice and add item working)
+[ ] Get preview rendering working
+    [ ] Put preview rendering in modal?
+
+[ ] Get delete call working
+[ ] Add mic button, and get sending of mic string working
 
 
 [ ] Create Loader to post requests to set up agent intents and entities to handle the above ^
     Should be able to do this from a fresh agent without visiting the site
-
-[ ] Creater updater, to use put requests to update the intents and entities with changes made in code.
-
-
-[ ] get Mic stuff working (should probably just integrate in the javascript sdk for this)
-
-
-Find out if we can inject parameters. why? because:
-From the homepage screen the user can start an invoice with anywhere from 0 to all required params.
-This user will be dropped into a new context/intent/whatever for sending the invoice, and it needs to know what params it already has.
-And then from there, the user might leave again to go add an item and then come back, and the sendInvoice intent still needs to know what params it already has.
-Perhaps this can be achieved with multiple session ID's (for the add item query). And maybe the homepage thing can doesn't need to switch contexts...
-
-^ after reading up on contexts, it looks like contexts can have parameters attached to them. This, combined with short small intents, should be enough for us.
+    [ ] Creater updater, to use put requests to update the intents and entities with changes made in code.
