@@ -6,7 +6,8 @@
     "templates": [
         "add @sys.number-integer:quantity @Service:service",
         "add @Service:service times @sys.number-integer:quantity",
-        "add @sys.number-integer:quantity times @Service:service"
+        "add @sys.number-integer:quantity times @Service:service",
+        "add @Service:service"
     ],
     "responses": [
         {

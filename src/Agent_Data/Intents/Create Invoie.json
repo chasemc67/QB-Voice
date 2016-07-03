@@ -9,7 +9,8 @@
         "Send @sys.given-name:name an @Invoice:invoice",
         "Send an @Invoice:invoice",
         "Create an @Invoice:invoice",
-        "Create an @Invoice:invoice to @sys.given-name:name"
+        "Create an @Invoice:invoice to @sys.given-name:name",
+        "Send an @Invoice:invoice to @sys.given-name:name"
     ],
     "responses": [
         {

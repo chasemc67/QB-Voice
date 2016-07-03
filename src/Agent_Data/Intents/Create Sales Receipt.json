@@ -5,11 +5,12 @@
     "name":"Create Sales Receipt",
     "contexts":[],
     "templates": [
-        "Send an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency",
-        "Send @sys.given-name:name a @sys.unit-currency:currency @SalesReceipt:receipt",
+        "Send an @SalesReceipt:receipt to @sys.given-name:name",
+        "Send @sys.given-name:name an @SalesReceipt:receipt",
         "Send an @SalesReceipt:receipt",
         "Create an @SalesReceipt:receipt",
-        "Create an @SalesReceipt:receipt to @sys.given-name:name for @sys.unit-currency:currency"
+        "Create an @SalesReceipt:receipt to @sys.given-name:name",
+        "Send an @SalesReceipt:receipt to @sys.given-name:name"
     ],
     "responses": [
         {
@@ -40,7 +41,7 @@
                     "value":"$receipt"
                 }
             ],
-            "speech": "Ok, sending sales receipt to $name for $currency.amount dollars."
+            "speech": "Ok, what do you want to add to the $receipt to $name?"
         }
     ]
 }
