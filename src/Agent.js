@@ -113,11 +113,11 @@ export default class Agent {
     queryAgent(payload) {
         const url = "https://api.api.ai/v1/query"
 
-        console.log("Querying with payload: ");
-        console.log(payload);
+        // console.log("Querying with payload: ");
+        // console.log(payload);
         return new Promise((resolve, reject) => {
             this.postJSON(url, payload).then((response) => {
-                console.log(response);
+                // console.log(response);
                 resolve(response);
             });
         });

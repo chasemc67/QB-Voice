@@ -9,15 +9,21 @@ export default class DocumentViewManager extends Component {
     }
 
     documentToRender(){
-        if (this.props.documentType === "Invoice") {
+        if (this.props.document.type === "Invoice") {
             return(
-                <Invoice parameters={this.props.parameters}/>
+                <div className="invoice">
+                    <Invoice name={this.props.document.name} />
+                    {this.props.items.map((item) => {
+                            return <Item name={item.service} quantity={item.quantity} />;
+                        })
+                    }
+                </div>
             );
-        } else if (this.props.documentType === "SalesReceipt") {
+        } else if (this.props.document.type === "SalesReceipt") {
             return(
-                <SalesReceipt parameters={this.props.parameters} />
+                <SalesReceipt name={this.props.document.name} />
             );
-        } else if (this.props.documentType === "AddItem" ){
+        } else if (this.props.document.type === "AddItem" ){
             return (
                 <Item parameters={this.props.parameters} />
             );
@@ -38,6 +44,6 @@ export default class DocumentViewManager extends Component {
 }
 
 DocumentViewManager.propTypes = {
-    documentType: React.PropTypes.string,
-    documentParameters: React.PropTypes.object
+    document: React.PropTypes.object,
+    items: React.PropTypes.array
 };

@@ -5,11 +5,11 @@
     "name":"Create Invoice",
     "contexts":[],
     "templates": [
-        "Send an @Invoice:invoice to @sys.given-name:name for @sys.unit-currency:currency",
-        "Send @sys.given-name:name a @sys.unit-currency:currency @Invoice:invoice",
+        "Send an @Invoice:invoice to @sys.given-name:name",
+        "Send @sys.given-name:name an @Invoice:invoice",
         "Send an @Invoice:invoice",
         "Create an @Invoice:invoice",
-        "Create an @Invoice:invoice to @sys.given-name:name for @sys.unit-currency:currency"
+        "Create an @Invoice:invoice to @sys.given-name:name"
     ],
     "responses": [
         {
@@ -26,21 +26,12 @@
                     ]
                 },
                 {
-                    "required":true,
-                    "dataType":"@sys.unit-currency",
-                    "name":"currency",
-                    "value":"$currency",
-                    "prompts":[
-                        "for how much?"
-                    ]
-                },
-                {
                     "dataType":"@Invoice",
                     "name":"invoice",
                     "value":"$invoice"
                 }
             ],
-            "speech": "Ok, sending an invoice to $name for $currency.amount dollars."
+            "speech": "Ok, what do you want to add to the $invoice to $name?"
         }
     ]
 }
