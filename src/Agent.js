@@ -1,10 +1,12 @@
+var config = require("json!./config.json");
+
 export default class Agent {
 
     postJSON(url, payload) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);
-            xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
+            xhr.setRequestHeader("Authorization", config.apiToken);
             xhr.setRequestHeader("accept", "application/json");
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.responseType = "json";
@@ -28,7 +30,7 @@ export default class Agent {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
-            xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
+            xhr.setRequestHeader("Authorization", config.apiToken);
             xhr.setRequestHeader("accept", "application/json");
             xhr.responseType = "json";
             xhr.onload = function() {
@@ -51,7 +53,7 @@ export default class Agent {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("delete", url, true);
-            xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
+            xhr.setRequestHeader("Authorization", config.apiToken);
             xhr.setRequestHeader("accept", "application/json");
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.onload = function() {
@@ -91,7 +93,7 @@ export default class Agent {
     }
 
     getContext() {
-        const url = "https://api.api.ai/v1/contexts?sessionId=123456789"
+        const url = "https://api.api.ai/v1/contexts?sessionId="+config.sessionID;
 
         return new Promise((resolve, reject) => {
             this.getJSON(url).then((response) => {
@@ -101,9 +103,9 @@ export default class Agent {
     }
 
     deleteContext() {
-        const url = "https://api.api.ai/v1/contexts?sessionId=123456789"
+        const url = "https://api.api.ai/v1/contexts?sessionId="+config.sessionID;
         let payload = {
-            "sessionId": "123456789",
+            "sessionId": config.sessionID,
             "resetContexts": "true"
         };
         return new Promise((resolve, reject) => {

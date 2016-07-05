@@ -6,6 +6,7 @@
 // Also contains a field for an agent response
 
 import React, { Component } from 'react';
+var config = require("json!../config.json");
 
 export default class QueryComponent extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class QueryComponent extends Component {
             ],
 
             "lang": "en",
-            "sessionId": "123456789"
+            "sessionId": config.sessionID
         };
 
         this.props.Agent.queryAgent(query).then((response) => {
@@ -50,8 +51,8 @@ export default class QueryComponent extends Component {
     handleStartListening(e) {
         var config = {
             server: 'wss://api.api.ai:4435/api/ws/query',
-            token: "88f0b9f6ed16438c81450397aa3b2385",// Use Client access token there (see agent keys).
-            sessionId: "123456789",
+            token: config.apiTokenVal,// Use Client access token there (see agent keys).
+            sessionId: config.sessionID,
             onInit: function () {
                 console.log("> ON INIT use config");
                 apiAi.open();

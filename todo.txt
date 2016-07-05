@@ -12,9 +12,11 @@ TO DO:
     Should be able to do this from a fresh agent without visiting the site
     [ ] Creater updater, to use put requests to update the intents and entities with changes made in code.
 
+[+] Create config file for session ID and API Keys
 
-[ ] Figure out something so we can add item at same time as we create invoice
-    ie: "send an invoice to john for 12 repairs"
+[ ] Get all Sub Queries entered and working
+
+[ ] Get first Compound Queries entered and working
 
 
 
