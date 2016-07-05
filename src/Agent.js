@@ -37,11 +37,11 @@ export default class Agent {
                 } else if (xhr.status === 400) {
                     reject(xhr.response.message);
                 } else {
-                    reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                    reject(`Get request failed with status = ${xhr.status} - ${xhr.statusText}`);
                 }
             };
             xhr.onerror = function() {
-                reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                reject(`Get request failed with status = ${xhr.status} - ${xhr.statusText}`);
             };
             xhr.send();
         });
@@ -50,9 +50,9 @@ export default class Agent {
     deleteJSON(url) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open("DELETE", url, true);
+            xhr.open("delete", url, true);
             xhr.setRequestHeader("Authorization", "Bearer 88f0b9f6ed16438c81450397aa3b2385");
-            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("accept", "application/json");
             xhr.setRequestHeader("Content-type", "application/json");
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -60,11 +60,11 @@ export default class Agent {
                 } else if (xhr.status === 400) {
                     reject(xhr.response.message);
                 } else {
-                    reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                    reject(`Delete request failed with status = ${xhr.status} - ${xhr.statusText}`);
                 }
             };
             xhr.onerror = function() {
-                reject(`POST request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                reject(`Delete request failed with status = ${xhr.status} - ${xhr.statusText}`);
             };
             xhr.send();
         });
@@ -102,9 +102,12 @@ export default class Agent {
 
     deleteContext() {
         const url = "https://api.api.ai/v1/contexts?sessionId=123456789"
-
+        let payload = {
+            "sessionId": "123456789",
+            "resetContexts": "true"
+        };
         return new Promise((resolve, reject) => {
-            this.deleteJSON(url).then((response) => {
+            this.postJSON(url, payload).then((response) => {
                 resolve(response);
             });
         });
@@ -112,7 +115,6 @@ export default class Agent {
 
     queryAgent(payload) {
         const url = "https://api.api.ai/v1/query"
-
         // console.log("Querying with payload: ");
         // console.log(payload);
         return new Promise((resolve, reject) => {
