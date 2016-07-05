@@ -2,7 +2,7 @@
 // Must also supply name and $ amount
 
 {
-    "name":"Create Invoice",
+    "name":"Create Invoice to Recipient",
     "contexts":[],
     "templates": [
         "Send an @Invoice:invoice to @sys.given-name:name",
