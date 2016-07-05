@@ -6,7 +6,11 @@ TO DO:
 [ ] Get delete call working
 [ ] Add mic button, and get sending of mic string working
 
+[ ] Add some CSS. start making this look pretty
 
 [ ] Create Loader to post requests to set up agent intents and entities to handle the above ^
     Should be able to do this from a fresh agent without visiting the site
     [ ] Creater updater, to use put requests to update the intents and entities with changes made in code.
+
+
+[ ] Figure out something so we can add item at same time as we create invoice
