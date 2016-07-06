@@ -27,17 +27,17 @@ For now, we’ll just handle each as sub-queries. We’ll worry about compound q
 Sub Queries:
 [+] Create Invoice or Sales receipt
 [+] Add “send to” in invoice
-add terms in invoice
-add any other data fields in invoice
-Change and data fields in Invoice that have already been set
+[ ] add terms in invoice
+[ ] add any other data fields in invoice
+[ ] Change and data fields in Invoice that have already been set
 [+] Add items to invoice
-Create users if they don’t that don’t exist
-Create products/services if they don’t exist
+[ ] Create users if they don’t that don’t exist
+[ ] Create products/services if they don’t exist
 
 Compound Queries:
-Choose create invoice and add 1 or more items (Send an Invoice for 12 socks)
-Choose create invoice and enter "to" (Send an Invoice to John)
-Add “Send to” AND add Item in same query as create invoice (Send an Invoice to John for socks)
+[+] Choose create invoice and enter "to" (Send an Invoice to John)
+[ ] Choose create invoice and add 1 or more items (Send an Invoice for 12 socks)
+[ ] Add “Send to” AND add Item in same query as create invoice (Send an Invoice to John for socks)
 
 
 Implied Queries:
