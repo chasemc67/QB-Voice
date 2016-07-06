@@ -3,7 +3,7 @@ TO DO:
 [ ] Get preview rendering working
     [ ] Put preview rendering in modal?
 
-[ ] Get delete call working
+[ ] Get delete context call working
 [ ] Add mic button, and get sending of mic string working
 
 [ ] Add some CSS. start making this look pretty

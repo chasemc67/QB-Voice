@@ -69,6 +69,7 @@ export default class QueryComponent extends Component {
         apiAi.onResults = function (data) {
 
             var processResult = function (data) {
+                console.log("data");
                 console.log(data);
             }
 
