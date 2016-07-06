@@ -49,9 +49,9 @@ export default class QueryComponent extends Component {
     }
 
     handleStartListening(e) {
-        var config = {
+        var agentConfig = {
             server: 'wss://api.api.ai:4435/api/ws/query',
-            token: config.apiTokenVal,// Use Client access token there (see agent keys).
+            token: config.apiTokenVal, // Use Client access token there (see agent keys).
             sessionId: config.sessionID,
             onInit: function () {
                 console.log("> ON INIT use config");
@@ -59,7 +59,7 @@ export default class QueryComponent extends Component {
             }
         };
 
-        apiAi = new ApiAi(config);
+        apiAi = new ApiAi(agentConfig);
         apiAi.init();
 
         apiAi.onOpen = function () {
