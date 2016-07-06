@@ -1,0 +1,26 @@
+// Subquery for creating an Invoice
+
+{
+    "name":"Create Invoice",
+    "contexts":[],
+    "templates": [
+        "Send an @Invoice:invoice",
+        "Send a @Invoice:invoice",
+        "Create an @Invoice:invoice",
+        "Create a @Invoice:invoice"
+    ],
+    "responses": [
+        {
+            "action": "Invoice",
+            "affectedContexts": ["creatingDocument"],
+            "parameters":[
+                {
+                    "dataType":"@Invoice",
+                    "name":"invoice",
+                    "value":"$invoice"
+                }
+            ],
+            "speech": "Ok, what do you want to add to the $invoice?"
+        }
+    ]
+}

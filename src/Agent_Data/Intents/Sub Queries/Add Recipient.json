@@ -1,0 +1,29 @@
+// Add a Service item (to an invoice or sales receipt)
+
+{
+    "name":"Add Recipient",
+    "contexts":["creatingDocument"],
+    "templates": [
+        "To @sys.given-name:name",
+        "Send to @sys.given-name:name",
+        "Change recipient to @sys.given-name:name"
+    ],
+    "responses": [
+        {
+            "action": "AddRecipient",
+            "affectedContexts": ["creatingDocument"],
+            "parameters":[
+                {
+                    "required":true,
+                    "dataType":"@sys.given-name",
+                    "name":"name",
+                    "value":"$name",
+                    "prompts":[
+                        "To whom should I send this Sales Receipt?"
+                    ]
+                }
+            ],
+            "speech": "alright, to $name"
+        }
+    ]
+}

@@ -7,14 +7,11 @@
     "templates": [
         "Send an @SalesReceipt:receipt to @sys.given-name:name",
         "Send @sys.given-name:name an @SalesReceipt:receipt",
-        "Send an @SalesReceipt:receipt",
-        "Create an @SalesReceipt:receipt",
-        "Create an @SalesReceipt:receipt to @sys.given-name:name",
-        "Send an @SalesReceipt:receipt to @sys.given-name:name"
+        "Create an @SalesReceipt:receipt to @sys.given-name:name"
     ],
     "responses": [
         {
-            "action": "SalesReceipt",
+            "action": "SalesReceiptTo",
             "affectedContexts": ["creatingDocument"],
             "parameters":[
                 {
@@ -24,15 +21,6 @@
                     "value":"$name",
                     "prompts":[
                         "To whom should I send this Sales Receipt?"
-                    ]
-                },
-                {
-                    "required":true,
-                    "dataType":"@sys.unit-currency",
-                    "name":"currency",
-                    "value":"$currency",
-                    "prompts":[
-                        "for how much?"
                     ]
                 },
                 {

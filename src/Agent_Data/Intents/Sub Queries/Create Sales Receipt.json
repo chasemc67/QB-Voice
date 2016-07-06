@@ -1,0 +1,27 @@
+// Intent to create an SalesReceipt
+// Must also supply name and $ amount
+
+{
+    "name":"Create Sales Receipt",
+    "contexts":[],
+    "templates": [
+        "Send an @SalesReceipt:salesReceipt",
+        "Send a @SalesReceipt:salesReceipt",
+        "Create an @SalesReceipt:salesReceipt",
+        "Create a @SalesReceipt:salesReceipt"
+    ],
+    "responses": [
+        {
+            "action": "SalesReceipt",
+            "affectedContexts": ["creatingDocument"],
+            "parameters":[
+                {
+                    "dataType":"@SalesReceipt",
+                    "name":"SalesReceipt",
+                    "value":"$salesReceipt"
+                }
+            ],
+            "speech": "Ok, what do you want to add to the $SalesReceipt?"
+        }
+    ]
+}

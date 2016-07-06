@@ -25,12 +25,12 @@ Handling Queries:
 For now, we’ll just handle each as sub-queries. We’ll worry about compound queries afterwards.
 
 Sub Queries:
-Create Invoice or Sales receipt
-Add “send to” in invoice
+[+] Create Invoice or Sales receipt
+[+] Add “send to” in invoice
 add terms in invoice
 add any other data fields in invoice
 Change and data fields in Invoice that have already been set
-Add items to invoice
+[+] Add items to invoice
 Create users if they don’t that don’t exist
 Create products/services if they don’t exist
 

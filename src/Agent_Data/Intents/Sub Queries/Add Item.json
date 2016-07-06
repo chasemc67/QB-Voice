@@ -1,8 +1,8 @@
-// Add a Service item (to an invoice or sales receipt)
+// Add a product or service item to an invoice
 
 {
-    "name":"Add Service",
-    "contexts":[],
+    "name":"Add Item",
+    "contexts":["creatingDocument"],
     "templates": [
         "add @sys.number-integer:quantity @Service:service",
         "add @Service:service times @sys.number-integer:quantity",
@@ -12,7 +12,7 @@
     "responses": [
         {
             "action": "AddItem",
-            "affectedContexts": [],
+            "affectedContexts": ["creatingDocument"],
             "parameters":[
                 {
                     "required":true,

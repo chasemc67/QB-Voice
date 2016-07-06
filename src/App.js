@@ -36,11 +36,11 @@ export default class App extends Component {
         }
 
         // Intent fired successfully (or at least, and intent fired and agent isn'r prompting for data) =====
-        if (response.result.action === "Invoice" && !response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+        if (response.result.action === "InvoiceTo" && !response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
             console.log("Creating an invoice, but not yet done");
             this.setState({document: {"name": "Invoice"}});
 
-        } else if (response.result.action === "Invoice" && response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+        } else if (response.result.action === "InvoiceTo" && response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
             let tempDocument = this.state.document;
             tempDocument.type = "Invoice";
             tempDocument.name = response.result.parameters.name;
