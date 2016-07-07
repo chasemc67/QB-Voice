@@ -13,6 +13,8 @@ var config = {
     "sessionID": "123456789"
 };
 
+let apiAi;
+
 export default class QueryComponent extends Component {
     constructor(props) {
         super(props);
@@ -27,6 +29,7 @@ export default class QueryComponent extends Component {
         this.handleStopListening = this.handleStopListening.bind(this);
         this.getCurrentContext = this.getCurrentContext.bind(this);
         this.deleteCurrentContext = this.deleteCurrentContext.bind(this);
+        this.handleStartListening = this.handleStartListening.bind(this);
     }
 
     onQueryAgentString(e) {
@@ -74,9 +77,10 @@ export default class QueryComponent extends Component {
         apiAi.onResults = function (data) {
 
             var processResult = function (data) {
-                console.log("data");
                 console.log(data);
-            }
+                this.setState({queryString: data.resolvedQuery});
+                this.handleQueryAgent();
+            }.bind(this);
 
             var status = data.status;
             var code;
@@ -85,7 +89,7 @@ export default class QueryComponent extends Component {
                 return;
             }
             processResult(data.result);
-        };
+        }.bind(this);
     }
 
     handleStopListening() {

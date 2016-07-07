@@ -1,10 +1,16 @@
 TO DO:
 
+[ ] Make QB Talk back
+
+[ ] Wire up the new subQueries
+
 [ ] Get preview rendering working
     [ ] Put preview rendering in modal?
 
 [ ] Get delete context call working
 [ ] Add mic button, and get sending of mic string working
+    [+] Get Mic working
+    [ ] Add single toggle button for mic
 
 [ ] Add some CSS. start making this look pretty
 

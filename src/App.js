@@ -4,8 +4,6 @@ import Agent from "./Agent";
 import DocumentViewManager from "./Components/DocumentViewManager";
 import QueryComponent from "./Components/QueryComponent";
 
-let apiAi;
-
 export default class App extends Component {
 
     constructor(props) {
