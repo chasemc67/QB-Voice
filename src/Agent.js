@@ -1,4 +1,9 @@
-var config = require("json!./config.json");
+//var config = require("json!./config.json");
+var config = {
+    "apiToken": "Bearer 88f0b9f6ed16438c81450397aa3b2385",
+    "apiTokenVal": "88f0b9f6ed16438c81450397aa3b2385",
+    "sessionID": "123456789"
+};
 
 export default class Agent {
 
