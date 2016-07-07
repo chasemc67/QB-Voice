@@ -20,7 +20,7 @@
                     "value":"$invoice"
                 }
             ],
-            "speech": "Ok, what do you want to add to the $invoice?"
+            "speech": "An $invoice to whom?"
         }
     ]
 }

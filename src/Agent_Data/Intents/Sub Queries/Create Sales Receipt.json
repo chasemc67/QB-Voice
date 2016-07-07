@@ -21,7 +21,7 @@
                     "value":"$salesReceipt"
                 }
             ],
-            "speech": "Ok, what do you want to add to the $SalesReceipt?"
+            "speech": "A $salesReceipt to whom?"
         }
     ]
 }
