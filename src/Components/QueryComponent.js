@@ -31,6 +31,7 @@ export default class QueryComponent extends Component {
         this.deleteCurrentContext = this.deleteCurrentContext.bind(this);
         this.handleStartListening = this.handleStartListening.bind(this);
         this.handleTextToSpeech = this.handleTextToSpeech.bind(this);
+        this.handleTestAudio = this.handleTestAudio.bind(this);
     }
 
     onQueryAgentString(e) {
@@ -116,6 +117,12 @@ export default class QueryComponent extends Component {
         })
     }
 
+    handleTestAudio() {
+        this.props.Agent.getTestAudio().then((response) => {
+            console.log(response);
+        })
+    }
+
     playAudio() {
         try {
             // Fix up for prefixing
@@ -136,7 +143,7 @@ export default class QueryComponent extends Component {
                 <button type="button" className="stopListeningButton" onClick={this.handleStopListening}>Stop Listening</button>
                 <button type="button" className="getContextButton" onClick={this.getCurrentContext}>Get Context</button>
                 <button type="button" className="deleteContextButton" onClick={this.deleteCurrentContext}>Delete Context</button>
-                <button type="button" className="text to speech" onClick={this.handleTextToSpeech}> Text to speech </button>
+                <button type="button" className="Get Test Audio" onClick={this.handleTestAudio}> Text to speech </button>
                 <div className="qbResponse">
                     <h2>QB Says: {this.state.agentResponse} </h2>
                 </div>

@@ -57,7 +57,7 @@ export default class Agent {
     getTestStuff() {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         var context = new AudioContext();
-        var audioBuffer = null;
+        var source = context.createBufferSource();
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -65,8 +65,11 @@ export default class Agent {
             xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    context.decodeAudioData(xhr.response, function(buffer) {
-                        audioBuffer = buffer;
+                    var audioData = xhr.response;
+                    context.decodeAudioData(audioData, function(buffer){
+                        source.buffer = buffer;
+                        source.connect(context.destination);
+                        source.start(context.currentTime);
                     });
                 } else if (xhr.status === 400) {
                     reject(xhr.response.message);
@@ -177,6 +180,14 @@ export default class Agent {
         });
     }
 
+    getTestAudio() {
+        return new Promise((resolve, reject) => {
+            this.getTestStuff().then((response) => {
+                resolve(response);
+            });
+        });
+    }
+
     getTTS(text) {
         const string = text.replace(" ", "+");
         const url = "https://api.api.ai/v1/tts?v=20150910&text=Hello+world";
@@ -185,17 +196,10 @@ export default class Agent {
         console.log(("Url: " + url.toString()));
 
         return new Promise((resolve, reject) => {
-            this.getTestStuff().then((response) => {
-                console.log(response);
-                resolve(response);
-            });
-        });
-        /*
-        return new Promise((resolve, reject) => {
             this.getTTSFile(url).then((response) => {
                 resolve(response);
             });
-        }); */
+        });
     }
 
     queryAgent(payload) {
