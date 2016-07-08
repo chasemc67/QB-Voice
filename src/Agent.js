@@ -54,6 +54,27 @@ export default class Agent {
         });
     }
 
+    getTestStuff() {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8081/audio", true);
+            xhr.responseType = "text";
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
+                } else if (xhr.status === 400) {
+                    reject(xhr.response.message);
+                } else {
+                    reject(`Get request failed with status = ${xhr.status} - ${xhr.statusText}`);
+                }
+            };
+            xhr.onerror = function() {
+                reject(`Get request failed with status = ${xhr.status} - ${xhr.statusText}`);
+            };
+            xhr.send();
+        });
+    }
+
     // Get the speech file generated from api.ai
     getTTSFile(url) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -63,8 +84,8 @@ export default class Agent {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
-            xhr.setRequestHeader("Authorization", "Bearer ACCESS_TOKEN");
-            xhr.setRequestHeader("Accept-language", "en-us");
+            xhr.setRequestHeader("Authorization", config.apiToken);
+            xhr.setRequestHeader("Accept-Language", "en-US");
             xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -152,16 +173,23 @@ export default class Agent {
 
     getTTS(text) {
         const string = text.replace(" ", "+");
-        const url = "https://api.api.ai/v1/tts?text=testing";
+        const url = "https://api.api.ai/v1/tts?v=20150910&text=Hello+world";
 
         console.log("Getting Text to speech");
         console.log(("Url: " + url.toString()));
 
         return new Promise((resolve, reject) => {
-            this.getTTSFile(url).then((response) => {
+            this.getTestStuff().then((response) => {
+                console.log(response);
                 resolve(response);
             });
         });
+        /*
+        return new Promise((resolve, reject) => {
+            this.getTTSFile(url).then((response) => {
+                resolve(response);
+            });
+        }); */
     }
 
     queryAgent(payload) {
