@@ -2,12 +2,20 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var express = require('express');
+var fs = require('fs');
+var path = require('path');
+
 var app = express();
+
+var filepath = path.join(__dirname, 'output.wav');
 
 app.get('/audio', function (req, res) {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.send('Hello World');
+
+    res.set({'Content-Type': 'audio/mpeg'});
+    var readStream = fs.createReadStream(filepath);
+    readStream.pipe(res);
 })
 
 var server = app.listen(8081, function () {

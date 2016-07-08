@@ -55,13 +55,19 @@ export default class Agent {
     }
 
     getTestStuff() {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        var context = new AudioContext();
+        var audioBuffer = null;
+
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:8081/audio", true);
-            xhr.responseType = "text";
+            xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
+                    context.decodeAudioData(xhr.response, function(buffer) {
+                        audioBuffer = buffer;
+                    });
                 } else if (xhr.status === 400) {
                     reject(xhr.response.message);
                 } else {
