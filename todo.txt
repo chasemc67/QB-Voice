@@ -25,7 +25,7 @@ TO DO:
 [ ] Get first Compound Queries entered and working
 
 
-
+[ ] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
 Handling Queries:
 For now, we’ll just handle each as sub-queries. We’ll worry about compound queries afterwards.

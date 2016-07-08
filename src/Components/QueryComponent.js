@@ -30,6 +30,7 @@ export default class QueryComponent extends Component {
         this.getCurrentContext = this.getCurrentContext.bind(this);
         this.deleteCurrentContext = this.deleteCurrentContext.bind(this);
         this.handleStartListening = this.handleStartListening.bind(this);
+        this.handleTextToSpeech = this.handleTextToSpeech.bind(this);
     }
 
     onQueryAgentString(e) {
@@ -109,6 +110,22 @@ export default class QueryComponent extends Component {
         });
     }
 
+    handleTextToSpeech() {
+        this.props.Agent.getTTS("here+is+some+text").then((response) => {
+            console.log(response);
+        })
+    }
+
+    playAudio() {
+        try {
+            // Fix up for prefixing
+            window.AudioContext = window.AudioContext||window.webkitAudioContext;
+            context = new AudioContext();
+        } catch(e) {
+            alert('Web Audio API is not supported in this browser');
+        }
+    }
+
     render() {
         return (
             <div className="QueryComponent">
@@ -119,6 +136,7 @@ export default class QueryComponent extends Component {
                 <button type="button" className="stopListeningButton" onClick={this.handleStopListening}>Stop Listening</button>
                 <button type="button" className="getContextButton" onClick={this.getCurrentContext}>Get Context</button>
                 <button type="button" className="deleteContextButton" onClick={this.deleteCurrentContext}>Delete Context</button>
+                <button type="button" className="text to speech" onClick={this.handleTextToSpeech}> Text to speech </button>
                 <div className="qbResponse">
                     <h2>QB Says: {this.state.agentResponse} </h2>
                 </div>
