@@ -1,8 +1,12 @@
 TO DO:
 
-[ ] Make QB Talk back
+[+] Make QB Talk back
+
+[ ] Reduce delay on curl
+[ ] Make sure we can hande infinite calls without crashing
 
 [ ] Wire up the new subQueries
+[ ] Stabilize queries
 
 [ ] Get preview rendering working
     [ ] Put preview rendering in modal?
@@ -21,7 +25,6 @@ TO DO:
 [+] Create config file for session ID and API Keys
 
 [ ] Get all Sub Queries entered and working
-
 [ ] Get first Compound Queries entered and working
 
 
