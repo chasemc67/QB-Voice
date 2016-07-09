@@ -55,6 +55,7 @@ export default class QueryComponent extends Component {
 
     handleAgentResponse(response) {
         this.setState({agentResponse: response.result.speech})
+        this.props.Agent.playTextAsVoice(response.result.speech);
         this.props.onRecieveResponse(response);
     }
 

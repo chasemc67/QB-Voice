@@ -54,7 +54,7 @@ export default class Agent {
         });
     }
 
-    getAndPlayAudio() {
+    getAndPlayAudio(text) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         var context = new AudioContext();
         var source = context.createBufferSource();
@@ -62,7 +62,7 @@ export default class Agent {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:8081/audio", true);
-            xhr.setRequestHeader("text", "hey its QB");
+            xhr.setRequestHeader("text", text);
             xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
                 if (xhr.status === 200) {
