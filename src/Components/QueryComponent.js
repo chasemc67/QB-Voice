@@ -118,7 +118,7 @@ export default class QueryComponent extends Component {
     }
 
     handleTestAudio() {
-        this.props.Agent.getTestAudio().then((response) => {
+        this.props.Agent.playTextAsVoice("here is some text").then((response) => {
             console.log(response);
         })
     }

@@ -54,7 +54,7 @@ export default class Agent {
         });
     }
 
-    getTestStuff() {
+    getAndPlayAudio() {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         var context = new AudioContext();
         var source = context.createBufferSource();
@@ -62,6 +62,7 @@ export default class Agent {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:8081/audio", true);
+            xhr.setRequestHeader("text", "hey its QB");
             xhr.responseType = 'arraybuffer';
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -180,9 +181,9 @@ export default class Agent {
         });
     }
 
-    getTestAudio() {
+    playTextAsVoice(text) {
         return new Promise((resolve, reject) => {
-            this.getTestStuff().then((response) => {
+            this.getAndPlayAudio(text).then((response) => {
                 resolve(response);
             });
         });
