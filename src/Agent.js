@@ -5,6 +5,9 @@ var config = {
     "sessionID": "123456789"
 };
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+
 export default class Agent {
 
     postJSON(url, payload) {
@@ -55,8 +58,6 @@ export default class Agent {
     }
 
     getAndPlayAudio(text) {
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        var context = new AudioContext();
         var source = context.createBufferSource();
 
         return new Promise((resolve, reject) => {
