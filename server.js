@@ -26,15 +26,17 @@ app.get('/audio', function (req, res) {
     var text = req.header("text");
 
     //getHttp();
-
-    //Lol ===========
-    curlShit(text);
     writeData = function () {
         res.set({'Content-Type': 'audio/mpeg'});
         var readStream = fs.createReadStream(filepath);
         readStream.pipe(res);
     }
-    setTimeout(writeData, 3000);
+
+    //Lol ===========
+    // curlShit(text);
+    download_file_curl(text, writeData);
+
+    // setTimeout(writeData, 6000);
     // ======================
 
     /*
@@ -44,7 +46,59 @@ app.get('/audio', function (req, res) {
     */
 })
 
+// Function to download file using curl
+var download_file_curl = function(text, callback) {
+    var util = require('util');
+    var spawn = require('child_process').spawn;
 
+    var url = "https://api.api.ai/v1/tts?v=20150910&text="
+    text = replaceAll(text, "?", "");
+    url = url + replaceAll(text, " ", "+");
+
+    // extract the file name
+    var file_name = "output.wav"
+    // create an instance of writable stream
+    var file = fs.createWriteStream('./output.wav');
+    // execute curl using child_process' spawn function
+    //var curl = spawn('curl', ["-H", "Accept-language: en-US", "https://api.api.ai/v1/tts?v=20150910&text=this+is+the+new+curl"]);
+    console.log("url: " + url);
+    var curl = spawn('curl', ["-H", "Accept-language: en-US", url]);
+    // add a 'data' event listener for the spawn instance
+    curl.stdout.on('data', function(data) { file.write(data); });
+    // add an 'end' event listener to close the writeable stream
+    curl.stdout.on('end', function(data) {
+        file.end();
+        console.log(file_name + ' downloaded');
+        callback();
+    });
+    // when the spawn child process exits, check if there were any errors and close the writeable stream
+    curl.on('exit', function(code) {
+        if (code != 0) {
+            console.log('Failed: ' + code);
+        }
+    });
+}
+
+/*
+curlShit = function(text) {
+    var util = require('util');
+    var exec = require('child_process').exec;
+
+    var command = 'curl -k -H "Accept-language: en-US" "https://api.api.ai/v1/tts?v=20150910&text=${text}" -o output.wav'
+    command = command.replace("${text}", replaceAll(text, " ", "+"));
+
+    child = exec(command, function(error, stdout, stderr){
+
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+
+    if(error !== null)
+    {
+        console.log('exec error: ' + error);
+    }
+
+    });
+} */
 
 getHttp = function () {
     var options = {
@@ -68,26 +122,6 @@ getHttp = function () {
         });
     }
     https.request(options, callback).end();
-}
-
-curlShit = function(text) {
-    var util = require('util');
-    var exec = require('child_process').exec;
-
-    var command = 'curl -k -H "Accept-language: en-US" "https://api.api.ai/v1/tts?v=20150910&text=${text}" -o output.wav'
-    command = command.replace("${text}", replaceAll(text, " ", "+"));
-
-    child = exec(command, function(error, stdout, stderr){
-
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-
-    if(error !== null)
-    {
-        console.log('exec error: ' + error);
-    }
-
-    });
 }
 
 function replaceAll(string, find, replaceWith) {
