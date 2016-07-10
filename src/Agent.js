@@ -86,7 +86,7 @@ export default class Agent {
         });
     }
 
-    // Get the speech file generated from api.ai
+    /* Get the speech file generated from api.ai
     getTTSFile(url) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         var context = new AudioContext();
@@ -114,18 +114,15 @@ export default class Agent {
             };
             xhr.send();
         });
-    }
+    } */
 
-    deleteJSON(url) {
+    deleteJSON() {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open("delete", url, true);
-            xhr.setRequestHeader("Authorization", config.apiToken);
-            xhr.setRequestHeader("accept", "application/json");
-            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.open("GET", "http://localhost:8081/deleteContexts", true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    typeof xhr.response === "object" ? resolve(xhr.response) : resolve(JSON.parse(xhr.response));
+                    resolve(xhr.response);
                 } else if (xhr.status === 400) {
                     reject(xhr.response.message);
                 } else {
@@ -170,13 +167,8 @@ export default class Agent {
     }
 
     deleteContext() {
-        const url = "https://api.api.ai/v1/contexts?sessionId="+config.sessionID;
-        let payload = {
-            "sessionId": config.sessionID,
-            "resetContexts": "true"
-        };
         return new Promise((resolve, reject) => {
-            this.deleteJSON(url).then((response) => {
+            this.deleteJSON().then((response) => {
                 resolve(response);
             });
         });

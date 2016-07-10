@@ -110,7 +110,11 @@ export default class QueryComponent extends Component {
 
     deleteCurrentContext() {
         this.props.Agent.deleteContext().then((response) => {
-            console.log("deleted context");
+            if (response === "Sucess") {
+                console.log("deleted contexts");
+            } else {
+                console.log("Could not delete contexts");
+            }
         });
     }
 

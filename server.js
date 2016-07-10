@@ -32,19 +32,34 @@ app.get('/audio', function (req, res) {
         readStream.pipe(res);
     }
 
-    //Lol ===========
-    // curlShit(text);
     download_file_curl(text, writeData);
-
-    // setTimeout(writeData, 6000);
-    // ======================
-
-    /*
-    res.set({'Content-Type': 'audio/mpeg'});
-    var readStream = fs.createReadStream(filepath);
-    readStream.pipe(res);
-    */
 })
+
+app.get('/deleteContexts', function (req, res) {
+    console.log("deleting contexts");
+    ackFinished = function () {
+        res.send("Sucess");
+    }
+    deleteContexts(ackFinished);
+})
+
+var deleteContexts = function(callback) {
+    var util = require('util');
+    var spawn = require('child_process').spawn;
+
+    var curl = spawn('curl', ["-i", "-X", "DELETE", "-H", "Accept: application/json",
+        "-H", "Content-Type: application/json", "-H", "Authorization: Bearer 88f0b9f6ed16438c81450397aa3b2385", "https://api.api.ai/v1/contexts?sessionId=123456789"]);
+
+    curl.stdout.on('end', function(data) {
+        callback();
+    });
+    // when the spawn child process exits, check if there were any errors and close the writeable stream
+    curl.on('exit', function(code) {
+        if (code != 0) {
+            console.log('Failed: ' + code);
+        }
+    });
+}
 
 // Function to download file using curl
 var download_file_curl = function(text, callback) {
@@ -78,27 +93,6 @@ var download_file_curl = function(text, callback) {
         }
     });
 }
-
-/*
-curlShit = function(text) {
-    var util = require('util');
-    var exec = require('child_process').exec;
-
-    var command = 'curl -k -H "Accept-language: en-US" "https://api.api.ai/v1/tts?v=20150910&text=${text}" -o output.wav'
-    command = command.replace("${text}", replaceAll(text, " ", "+"));
-
-    child = exec(command, function(error, stdout, stderr){
-
-    console.log('stdout: ' + stdout);
-    console.log('stderr: ' + stderr);
-
-    if(error !== null)
-    {
-        console.log('exec error: ' + error);
-    }
-
-    });
-} */
 
 getHttp = function () {
     var options = {
