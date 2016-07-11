@@ -1,20 +1,10 @@
-TO DO:
+ToDo:
 
-[+] In Prompt.js, if agent is prompting, offer examples of dataTypes
-
-[+] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
-
-[+] Wire up sales receipt action to view
-[+] Fix display for implied query
 [ ] Add Complicated query (I sold something) to saved json objects
-
-[ ] Wire up the new subQueries
-[+] Get more stablity when using mic
 
 [ ] Get preview rendering working
     [ ] Put preview rendering in modal?
 
-[+] Get delete context call working
 [ ] Add mic button, and get sending of mic string working
     [+] Get Mic working
     [ ] Add single toggle button for mic
@@ -25,10 +15,7 @@ TO DO:
     Should be able to do this from a fresh agent without visiting the site
     [ ] Creater updater, to use put requests to update the intents and entities with changes made in code.
 
-[+] Create config file for session ID and API Keys
-
-[ ] Get all Sub Queries entered and working
-[ ] Get first Compound Queries entered and working
+[ ] Get all Queries entered and working
 
 Handling Queries:
 For now, we’ll just handle each as sub-queries. We’ll worry about compound queries afterwards.
