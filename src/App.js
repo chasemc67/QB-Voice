@@ -21,6 +21,7 @@ export default class App extends Component {
 
         this.parseAgentResponse = this.parseAgentResponse.bind(this);
         this.Agent = new Agent();
+        this.Agent.deleteContext()
     }
 
     // Determine if an intent has fully fired, or the agent is prompting the user for more information

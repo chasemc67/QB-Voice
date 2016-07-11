@@ -64,8 +64,8 @@ export default class Prompt extends Component {
                     })
                 }
                 <h2> Or you could: </h2>
-                {complicatedThingsToSay.map((thing) => {
-                        return <h3> {thing} </h3>
+                {complicatedThingsToSay.map((otherThing) => {
+                        return <h3> {otherThing} </h3>
                     })
                 }
             </div>
@@ -74,6 +74,6 @@ export default class Prompt extends Component {
 }
 
 Prompt.propTypes = {
-    context: React.PropTypes.object,
-    isAgentPrompting: React.PropTypes.object
+    context: React.PropTypes.array,
+    isAgentPrompting: React.PropTypes.bool
 }
