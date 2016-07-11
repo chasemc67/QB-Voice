@@ -1,6 +1,6 @@
 TO DO:
 
-[ ] In Prompt.js, if agent is prompting, offer examples of dataTypes
+[+] In Prompt.js, if agent is prompting, offer examples of dataTypes
 
 [+] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
