@@ -9,7 +9,15 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {agentResponse: "", queryString: "", documentType: "", document: {}, items: []};
+        this.state = {
+            agentResponse: "",
+            queryString: "",
+            documentType: "",
+            document: {},
+            items: [],
+            currentContexts: [],
+            isAgentPrompting: false
+        };
 
         this.parseAgentResponse = this.parseAgentResponse.bind(this);
         this.Agent = new Agent();
@@ -19,14 +27,17 @@ export default class App extends Component {
     isAgentPrompting(response) {
         for (name in response.metadata.contexts) {
             if (response.metadata.contexts[name].indexOf("_id_dialog_context") > -1){
+                this.setState({isAgentPrompting: true});
                 return true;
             }
         }
+        this.setState({isAgentPrompting: false});
         return false;
     }
 
     parseAgentResponse(response) {
         console.log(response);
+        this.setState({currentContexts: response.metadata.contexts});
 
         // Agent is prompting for more data ====
         if (this.isAgentPrompting(response)) {
@@ -81,7 +92,7 @@ export default class App extends Component {
             <div className="qbVoice">
                 <QueryComponent Agent={this.Agent} onRecieveResponse={this.parseAgentResponse} />
                 <DocumentViewManager document={this.state.document} items={this.state.items} />
-                <Prompt />
+                <Prompt context={this.state.currentContexts} isAgentPrompting={this.state.isAgentPrompting}/>
             </div>
         );
     }

@@ -4,19 +4,35 @@
 
 import React, { Component } from 'react';
 
-let thingsToSay = [
-    "Send an invoice",
-    "send an invoice to john",
-    "Send a sales receipt"
-]
-
-let complicatedThingsToSay = [
-    "Tell me about a sale"
-];
+let thingsToSay, complicatedThingsToSay;
 
 export default class Prompt extends Component {
 
+    getData() {
+        if (this.props.isAgentPrompting){
+            thingsToSay = [];
+            complicatedThingsToSay = [];
+        } else if (this.props.context.indexOf("creatingdocument") > -1) {
+            thingsToSay = [
+                "add widget",
+                "add 12 widgets"
+            ];
+            complicatedThingsToSay = [""];
+        } else {
+            thingsToSay = [
+                "Send an invoice",
+                "send an invoice to john",
+                "Send a sales receipt"
+            ];
+
+            complicatedThingsToSay = [
+            "Tell me about a sale"
+            ];
+        }
+    }
+
     render() {
+        this.getData();
         return (
             <div className="Prompt">
                 <h2> Not sure what to say? how about: </h2>
@@ -35,5 +51,6 @@ export default class Prompt extends Component {
 }
 
 Prompt.propTypes = {
-    context: React.PropTypes.object
+    context: React.PropTypes.object,
+    isAgentPrompting: React.PropTypes.object
 }
