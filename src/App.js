@@ -48,6 +48,17 @@ export default class App extends Component {
             let tempItems = this.state.items;
             tempItems.push({"quantity": response.parameters.quantity, "service": response.parameters.service});
             this.setState({items: tempItems});
+
+        } else if (response.action === "SalesReceiptTo" && !response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+            console.log("Creating a sales receipt, but not yet done");
+            this.setState({document: {"name": "Sales Receipt"}});
+
+        } else if (response.action === "SalesReceiptTo" && response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+            let tempDocument = this.state.document;
+            tempDocument.type = "SalesReceipt";
+            tempDocument.name = response.parameters.name;
+            this.setState({document: tempDocument});
+
         }
     }
 

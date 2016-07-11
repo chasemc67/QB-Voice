@@ -21,11 +21,13 @@ export default class DocumentViewManager extends Component {
             );
         } else if (this.props.document.type === "SalesReceipt") {
             return(
-                <SalesReceipt name={this.props.document.name} />
-            );
-        } else if (this.props.document.type === "AddItem" ){
-            return (
-                <Item parameters={this.props.parameters} />
+                <div className="salesReceipt">
+                    <SalesReceipt name={this.props.document.name} />
+                    {this.props.items.map((item) => {
+                            return <Item name={item.service} quantity={item.quantity} />;
+                        })
+                    }
+                </div>
             );
         } else {
             return(
