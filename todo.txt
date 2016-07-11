@@ -1,17 +1,17 @@
 TO DO:
 
-[+] Make QB Talk back
+App appears to behave quite stable when only typing queries (api.ai's mic thing must suck).
 
-[ ] Reduce delay on curl
-[ ] Make sure we can hande infinite calls without crashing
+[ ] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
+[ ] Wire up sales receipt action to view
 [ ] Wire up the new subQueries
-[ ] Stabilize queries
+[ ] Get more stablity when using mic
 
 [ ] Get preview rendering working
     [ ] Put preview rendering in modal?
 
-[ ] Get delete context call working
+[+] Get delete context call working
 [ ] Add mic button, and get sending of mic string working
     [+] Get Mic working
     [ ] Add single toggle button for mic
@@ -26,9 +26,6 @@ TO DO:
 
 [ ] Get all Sub Queries entered and working
 [ ] Get first Compound Queries entered and working
-
-
-[ ] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
 Handling Queries:
 For now, we’ll just handle each as sub-queries. We’ll worry about compound queries afterwards.
@@ -57,3 +54,35 @@ Implied Queries:
     From this, QB should figure out that it needs to enter a sales receipt for socks
     QB should also ask followup questions if it is unsure (maybe in some cases it should be an invoice instead).
     QB should also check if the task even needs to be done (maybe some other app has already entered the sale).
+
+
+
+
+QB workflows:
+
+C: “Hey QB. hows it going?”
+QB: “Almost as good as your sales this week, Chase”
+C: “Send an Invoice”
+QB: “Ok, to whom should i send this invoice?”
+C: “To John”
+QB: “Would you like to add any items?”
+C: “Add product”
+QB: “How many?”
+C: “12”
+QB: “Add more items? or send it?”
+C: “Send it”
+QB: “Sending an Invoice to John for 12 products”
+
+
+C: “Send a Sales Receipt to Nancy”
+QB: “What did you sell Nancy?”
+C: “12 products”
+QB: “Ready to send it?”
+C: “Yes”
+
+
+
+C: “I sold nancy 12 products”
+QB: “has she paid you yet?”
+C: “yes, in cash”
+QB: “Alright, I’ll send Nancy a sales receipt for 12 products”
