@@ -80,7 +80,6 @@ export default class QueryComponent extends Component {
         apiAi.onResults = function (data) {
 
             var processResult = function (data) {
-                console.log(data);
                 this.handleAgentResponse(data);
                 //console.log(data);
                 //this.setState({queryString: data.resolvedQuery});
