@@ -8,8 +8,31 @@ let thingsToSay, complicatedThingsToSay;
 
 export default class Prompt extends Component {
 
+    arrayContainsStringWithSubstring(array, substring){
+        for (let i=0; i<array.length; i++){
+            if (array[i].indexOf(substring) > -1){
+                return true;
+            }
+        }
+        return false;
+    }
+
     getData() {
-        if (this.props.isAgentPrompting){
+        if (this.arrayContainsStringWithSubstring(this.props.context, "_dialog_params_name")) {
+            thingsToSay = [
+                "John",
+                "Nancy",
+                "etc"
+            ];
+            complicatedThingsToSay = [];
+        } else if (this.arrayContainsStringWithSubstring(this.props.context, "_dialog_params_quantity")) {
+            thingsToSay = [
+                "5",
+                "10",
+                "ect"
+            ];
+            complicatedThingsToSay = [];
+        } else if (this.props.isAgentPrompting){
             thingsToSay = [];
             complicatedThingsToSay = [];
         } else if (this.props.context.indexOf("creatingdocument") > -1) {
