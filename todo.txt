@@ -5,6 +5,9 @@ App appears to behave quite stable when only typing queries (api.ai's mic thing 
 [+] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
 [+] Wire up sales receipt action to view
+[ ] Fix display for implied query
+[ ] Add Implied query to saved json objects
+
 [ ] Wire up the new subQueries
 [ ] Get more stablity when using mic
 

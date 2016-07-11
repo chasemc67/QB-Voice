@@ -3,6 +3,7 @@ import Invoice from "./Components/Invoice";
 import Agent from "./Agent";
 import DocumentViewManager from "./Components/DocumentViewManager";
 import QueryComponent from "./Components/QueryComponent";
+import Prompt from "./Components/Prompt";
 
 export default class App extends Component {
 
@@ -59,6 +60,18 @@ export default class App extends Component {
             tempDocument.name = response.parameters.name;
             this.setState({document: tempDocument});
 
+        } else if (response.action === "iSold" && !response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+            console.log("Creating a sales receipt, but not yet done");
+            this.setState({document: {"name": "Sales Receipt"}});
+
+        } else if (response.action === "iSold" && response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+            let tempDocument = this.state.document;
+            tempDocument.type = "SalesReceipt";
+            tempDocument.name = response.parameters.name;
+            this.setState({document: tempDocument});
+            let tempItems = this.state.items;
+            tempItems.push({"quantity": response.parameters.quantity, "service": response.parameters.service});
+            this.setState({items: tempItems});
         }
     }
 
@@ -68,6 +81,7 @@ export default class App extends Component {
             <div className="qbVoice">
                 <QueryComponent Agent={this.Agent} onRecieveResponse={this.parseAgentResponse} />
                 <DocumentViewManager document={this.state.document} items={this.state.items} />
+                <Prompt />
             </div>
         );
     }

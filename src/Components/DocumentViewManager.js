@@ -31,7 +31,7 @@ export default class DocumentViewManager extends Component {
             );
         } else {
             return(
-                <div> <h1> Document will display here </h1> </div>
+                <div> <h1> Ask QB to create an Invoice or Sales receipt for you </h1> </div>
             );
         }
     }

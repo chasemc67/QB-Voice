@@ -1,9 +1,16 @@
-.document {
-    border-style: solid;
-    border-color: black;
-}
-
 .QueryComponent {
     border-style: solid;
-    border-color: red;
+    border-color: rgb(34, 161, 2);
+}
+
+.document {
+    margin-top: 40px;
+    border-style: solid;
+    border-color: rgb(101, 95, 88);
+}
+
+.Prompt {
+    margin-top: 40px;
+    border-style: solid;
+    border-color: rgb(101, 95, 88);
 }
