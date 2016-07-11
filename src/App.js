@@ -16,8 +16,8 @@ export default class App extends Component {
 
     // Determine if an intent has fully fired, or the agent is prompting the user for more information
     isAgentPrompting(response) {
-        for (name in response.result.metadata.contexts) {
-            if (response.result.metadata.contexts[name].indexOf("_id_dialog_context") > -1){
+        for (name in response.metadata.contexts) {
+            if (response.metadata.contexts[name].indexOf("_id_dialog_context") > -1){
                 return true;
             }
         }
@@ -34,19 +34,19 @@ export default class App extends Component {
         }
 
         // Intent fired successfully (or at least, and intent fired and agent isn'r prompting for data) =====
-        if (response.result.action === "InvoiceTo" && !response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+        if (response.action === "InvoiceTo" && !response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
             console.log("Creating an invoice, but not yet done");
             this.setState({document: {"name": "Invoice"}});
 
-        } else if (response.result.action === "InvoiceTo" && response.result.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
+        } else if (response.action === "InvoiceTo" && response.metadata.contexts.includes(("creatingDocument").toLowerCase())) {
             let tempDocument = this.state.document;
             tempDocument.type = "Invoice";
-            tempDocument.name = response.result.parameters.name;
+            tempDocument.name = response.parameters.name;
             this.setState({document: tempDocument});
 
-        } else if (response.result.action === "AddItem") {
+        } else if (response.action === "AddItem") {
             let tempItems = this.state.items;
-            tempItems.push({"quantity": response.result.parameters.quantity, "service": response.result.parameters.service});
+            tempItems.push({"quantity": response.parameters.quantity, "service": response.parameters.service});
             this.setState({items: tempItems});
         }
     }

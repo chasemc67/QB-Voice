@@ -2,7 +2,7 @@ TO DO:
 
 App appears to behave quite stable when only typing queries (api.ai's mic thing must suck).
 
-[ ] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
+[+] Fix redundant call to resolveQuery when using mic (using mic handles query, dont need to call handleQuery and do the request ourselves too.)
 
 [ ] Wire up sales receipt action to view
 [ ] Wire up the new subQueries

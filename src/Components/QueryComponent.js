@@ -21,7 +21,7 @@ export default class QueryComponent extends Component {
 
         this.state = {agentResponse: "", queryString: ""};
 
-        // this.handleAgentResponse = this.handleAgentResponse.bind(this);
+        this.handleAgentResponse = this.handleAgentResponse.bind(this);
 
         this.onQueryAgentString = this.onQueryAgentString.bind(this);
         this.handleQueryAgent = this.handleQueryAgent.bind(this);
@@ -47,14 +47,14 @@ export default class QueryComponent extends Component {
         };
 
         this.props.Agent.queryAgent(query).then((response) => {
-            this.handleAgentResponse(response);
+            this.handleAgentResponse(response.result);
         });
     }
 
     handleAgentResponse(response) {
-        this.setState({agentResponse: response.result.speech})
-        if (response.result.speech !== "") {
-            this.props.Agent.playTextAsVoice(response.result.speech);
+        this.setState({agentResponse: response.speech})
+        if (response.speech !== "") {
+            this.props.Agent.playTextAsVoice(response.speech);
         }
         this.props.onRecieveResponse(response);
     }
@@ -81,8 +81,10 @@ export default class QueryComponent extends Component {
 
             var processResult = function (data) {
                 console.log(data);
-                this.setState({queryString: data.resolvedQuery});
-                this.handleQueryAgent();
+                this.handleAgentResponse(data);
+                //console.log(data);
+                //this.setState({queryString: data.resolvedQuery});
+                // this.handleQueryAgent();
             }.bind(this);
 
             var status = data.status;
