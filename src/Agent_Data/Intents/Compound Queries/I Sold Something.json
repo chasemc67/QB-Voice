@@ -1,0 +1,50 @@
+// Intent to demonstrate telling QB what has happened,
+// and have it figure out what it needs to do.
+
+{
+    "name":"I Sold Something",
+    "contexts":[],
+    "templates": [
+        "I sold @sys.given-name:name @sys.number-integer:quantity @Service:service",
+        "I sold @sys.number-integer:quantity @Service:service to @sys.given-name:name",
+        "I sold some @Service:service",
+        "I sold some @Service:service to @sys.given-name:name",
+        "I sold @sys.number-integer:quantity @Service:service"
+    ],
+    "responses": [
+        {
+            "action": "iSold",
+            "affectedContexts": ["creatingDocument"],
+            "parameters":[
+                {
+                    "required":true,
+                    "dataType":"@sys.given-name",
+                    "name":"name",
+                    "value":"$name",
+                    "prompts":[
+                        "Who did you sell to?"
+                    ]
+                },
+                {
+                    "required":true,
+                    "dataType":"@sys.number-integer",
+                    "name":"quantity",
+                    "value":"$quantity",
+                    "prompts":[
+                        "How many did you sell?"
+                    ]
+                },
+                {
+                    "required":true,
+                    "dataType":"@Service",
+                    "name":"service",
+                    "value":"$service",
+                    "prompts":[
+                        "What did you sell?"
+                    ]
+                }
+            ],
+            "speech": "Alright, I'll create a Sales Receipt to $name for those $service"
+        }
+    ]
+}

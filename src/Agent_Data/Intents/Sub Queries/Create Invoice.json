@@ -1,5 +1,7 @@
 // Subquery for creating an Invoice
 
+/* Disabled in current implementation
+
 {
     "name":"Create Invoice",
     "contexts":[],
@@ -24,3 +26,5 @@
         }
     ]
 }
+ 
+*/

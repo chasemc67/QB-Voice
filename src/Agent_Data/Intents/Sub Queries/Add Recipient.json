@@ -1,5 +1,7 @@
 // Add a Service item (to an invoice or sales receipt)
 
+/* Disabled in current implementation
+
 {
     "name":"Add Recipient",
     "contexts":["creatingDocument"],
@@ -27,3 +29,5 @@
         }
     ]
 }
+
+*/
