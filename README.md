@@ -3,7 +3,7 @@
 
 A voice bot, built with API.ai (now Google Dialog Flow) which lets you create Invoices and Sales Receipts using just your voice. 
 
-A Demo video is below: 
+A Demo video is below:   
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=glmiQ6Z5yqk
 " target="_blank"><img src="http://img.youtube.com/vi/glmiQ6Z5yqk/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
